@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
 import "./globals.css";
+import Navbar from "./Components/shared/Navbar";
 const oswald = Oswald({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${oswald.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Navbar></Navbar>
         {children}
         </body>
     </html>
