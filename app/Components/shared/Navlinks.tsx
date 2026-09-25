@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 {/*links for menu take as object an array */}
 const links=[ 
 {name:'WorksOut',
-  href:'/home',
+  href:'/Workouts',
 },
 {
   name:'My Plan',

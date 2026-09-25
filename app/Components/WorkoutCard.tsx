@@ -2,11 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import { FaClock, FaFire } from "react-icons/fa";
 import { IWorkout } from '../Type.ts/Type';
+import Link from 'next/link';
 interface IWorkoutProps{
   workout:IWorkout;
 }
 const WorkoutCard = ({workout}:IWorkoutProps) => {
     return (
+      <Link href={`/Workouts/${workout.id}`}>  
         <div className="w-full  bg-[#222630]
     rounded-2xl
     border
@@ -84,7 +86,7 @@ const WorkoutCard = ({workout}:IWorkoutProps) => {
 
         </div>
       </div>
-    
+     </Link>
     );
 };
 
