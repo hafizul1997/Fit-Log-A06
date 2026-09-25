@@ -4,7 +4,7 @@ import Banner from '@/app/assets/banner.png'
 const HeroPage = () => {
     return (  
         <div className='w-full bg-[#000000]'> 
-        <div className='w-full max-w-\[1280px\]  mx-auto min-h-screen'>
+        <div className='w-full max-w-\[1280px\]  mx-auto h-auto pb-15'>
             <div className={`bg-[#222630] grid  rounded-2xl  sm:grid-cols-1  lg:grid-cols-2 gap-20  mx-6  p-10 justify-center h-auto  items-center`}> 
             <div className='flex flex-col items-center gap-5 lg:items-start'> 
                 <p className='text-[#C2F800] text-sm'>WORKOUT LIBRARY</p>
