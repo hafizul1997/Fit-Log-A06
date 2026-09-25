@@ -7,8 +7,8 @@ const Navbar = () => {
   {/*Using Daisy UI navbar */}
     return (
       
-      <div>  
-        <div className="navbar  bg-[#000000] shadow-sm max-w-\[1280px\] mx-auto">
+      <div className='w-full'>  
+        <div className="navbar  bg-[#000000] shadow-sm max-w-\[1280px\] w-full mx-auto">
   <div className="navbar-start">
     <div className="dropdown">
   <div
