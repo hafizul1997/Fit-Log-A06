@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkoutCard from '@/app/Components/WorkoutCard';
 import { IWorkout } from '@/app/Type.ts/Type';
+import Hero from "@/app/Components/shared/HomePage/Hero";
 const getWorkOuts= async()=>{
     const res=await fetch('https://api.abcz.workers.dev/api/fitlog');
     const data=await res.json();
@@ -10,7 +11,8 @@ const getWorkOuts= async()=>{
 const WorkoutPage =async() => {
         const workOutData=await getWorkOuts();
     return (
-       
+        <main className="min-h-screen bg-black">  
+          <Hero />
         <section className='w-full bg-[#000000] pb-15'> 
         <div className='w-full  mx-auto  max-w-\[1280px\]'>
             <div className='mx-6'>
@@ -27,7 +29,7 @@ const WorkoutPage =async() => {
      </div>
          </div>
         </section>
-       
+        </main>
     );
 };
 
