@@ -7,7 +7,6 @@ const HomePage = () => {
     <div>
       <HeroPage />
       <Workouts />
-      HOME PAGES
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/shared/Navbar";
 import WorkoutProvider from "./Components/Context/WorkoutContext";
+import Footer from "./Components/shared/HomePage/Footer";
 const oswald = Oswald({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
        <WorkoutProvider>
           <Navbar />
           {children}
+          <Footer />
         </WorkoutProvider>
         </body>
     </html>

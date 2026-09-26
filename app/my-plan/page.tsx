@@ -95,11 +95,11 @@ const MyPlanPage = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold">
-            My Workout Plan
+            My Plan
           </h1>
 
           <p className="mt-2 text-gray-400">
-            Manage your workouts and track your progress.
+           Cap of five lifts for today. Finish them, then load more.
           </p>
         </div>
 
