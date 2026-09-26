@@ -3,6 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 import Logo from '@/app/assets/logo.png'
 import Navlinks from './Navlinks';
+import MyPlanButton from '@/app/WorkoutDetails/MyPlanButton';
+import SavedNavButton from '../Saved/SavedNavButton';
 const Navbar = () => {
   {/*Using Daisy UI navbar */}
     return (
@@ -64,8 +66,8 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end flex gap-2 mr-6">
-   <button className='btn btn-neutral'>Plan <div className='rounded-full badge bg-[#CCFF00] badge-lg'>0</div></button>
-   <button className='btn btn-neutral'>Saved <div className=' rounded-full badge bg-[#CCFF00] badge-lg'>0</div></button>
+    <MyPlanButton />
+    <SavedNavButton />
   </div>
 </div>
  </div>

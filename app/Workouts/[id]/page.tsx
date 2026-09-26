@@ -1,16 +1,18 @@
 import { IWorkout } from '@/app/Type.ts/Type';
 import Image from "next/image";
 import Link from "next/link";
+import AddToPlanButton from "@/app/WorkoutDetails/AddToPlanButton";
 import {
   FaDumbbell,
   FaFire,
   FaClock,
   FaStar,
   FaLayerGroup,
-  FaPlus,
    FaBookmark
 } from "react-icons/fa";
 import React from 'react';
+import SaveforLaterButton from '@/app/WorkoutDetails/SavedButton';
+import SavedButton from '@/app/WorkoutDetails/SavedButton';
 interface pageDetailsProps{
     params:Promise<{
         id:string;
@@ -147,20 +149,8 @@ const pageDetails =async({params}:pageDetailsProps) => {
             {/*  BUTTON  */}
              
              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-
-  <button
-    className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#C2F800] px-6 py-3.5 font-bold text-black transition hover:bg-[#d4ff33] hover:shadow-[0_0_20px_rgba(194,248,0,0.2)]"
-  >
-    <FaPlus />
-    Add to Today's Plan
-  </button>
-
-  <button
-    className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-600 px-6 py-3.5 font-bold text-white transition hover:border-[#C2F800] hover:text-[#C2F800]"
-  >
-    <FaBookmark />
-    Save for Later
-  </button>
+<AddToPlanButton workout={workout}></AddToPlanButton>
+<SavedButton workout={workout} />
 
 </div>
 
