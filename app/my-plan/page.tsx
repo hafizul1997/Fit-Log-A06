@@ -2,9 +2,8 @@
 
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import toast from "react-hot-toast";
 import { WorkoutContext } from "@/app/Components/Context/WorkoutContext";
-
 import WorkoutSummary from "@/app/Components/MyPlan/WorkpoutSummary";
 import PlanTabs from "@/app/Components/MyPlan/PlanTab";
 import SortDropdown from "@/app/Components/MyPlan/SortDropdown";
@@ -81,10 +80,12 @@ const MyPlanPage = () => {
       setMyPlan((prev) =>
         prev.filter((workout) => workout.id !== id)
       );
+      toast.success("Workout removed from your plan!");
     } else {
       setSavedWorkouts((prev) =>
         prev.filter((workout) => workout.id !== id)
       );
+       toast.success("Workout removed from saved workouts!");
     }
   };
 
