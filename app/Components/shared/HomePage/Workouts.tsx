@@ -2,7 +2,7 @@ import React from 'react';
 import WorkoutCard from '../../WorkoutCard';
 import { IWorkout } from '@/app/Type.ts/Type';
 const getWorkOuts= async()=>{
-    const res=await fetch('https://api.abcz.workers.dev/api/fitlog');
+    const res=await fetch('https://api.api-store.workers.dev/api/fitlog');
     const data=await res.json();
     return data;
 }

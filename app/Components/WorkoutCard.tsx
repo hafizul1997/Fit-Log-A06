@@ -18,7 +18,6 @@ const WorkoutCard = ({workout}:IWorkoutProps) => {
     hover:border-[#C2F800]
     hover:-translate-y-2  overflow-hidden rounded-2xl bg-[#222630] shadow-lg"
       >
-
         {/* Image */}
         <Image
           src={workout.image}
@@ -74,9 +73,6 @@ const WorkoutCard = ({workout}:IWorkoutProps) => {
             </div>
 
             <div>
-              <p className="text-xs text-[#9CA3AF]">
-                Rating
-              </p>
               <p className="mt-1 font-semibold text-[#C2F800]">
                 ★ {workout.rating}
               </p>
