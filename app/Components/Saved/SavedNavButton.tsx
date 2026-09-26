@@ -19,13 +19,13 @@ const SavedNavButton = () => {
   const { savedWorkouts } = context;
 
   return (
-    <button
+      <button
       onClick={() => router.push("/my-plan")}
-      className="btn btn-neutral gap-2"
+      className="btn btn-neutral gap-2 border-none bg-transparent text-white hover:bg-transparent"
     >
       Saved
 
-      <div className="badge badge-lg rounded-full bg-[#CCFF00] text-black">
+      <div className="badge badge-lg rounded-full border border-gray-500 bg-transparent text-white">
         {savedWorkouts.length}
       </div>
     </button>

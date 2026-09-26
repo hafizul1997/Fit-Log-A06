@@ -23,7 +23,7 @@ const MyPlanButton = () => {
       onClick={() => router.push("/my-plan")}
       className="btn btn-neutral gap-2"
     >
-      My Plan
+      Plan
 
       <div className="badge badge-lg rounded-full bg-[#CCFF00] text-black">
         {myPlan.length}

@@ -41,7 +41,7 @@ const SavedButton = ({ workout }: SavedButtonProps) => {
   className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-6 py-3.5 font-bold transition ${
     alreadySaved
       ? "cursor-not-allowed border-gray-600 bg-gray-600 text-gray-300"
-      : "border-gray-600 bg-transparent text-white hover:border-[#C2F800]"
+      : "border-gray-600 bg-transparent text-white hover:border-white"
   }`}
 >
   {alreadySaved ? (
