@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import {
   FaClock,
   FaFire,
   FaStar,
   FaTimes,
+  FaCheck,
 } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 import { IWorkout } from "@/app/Type.ts/Type";
+import { WorkoutContext } from "@/app/Components/Context/WorkoutContext";
 
 interface WorkoutPlanCardProps {
   workout: IWorkout;
@@ -24,10 +28,37 @@ const WorkoutPlanCard = ({
 }: WorkoutPlanCardProps) => {
   const router = useRouter();
 
+  const context = useContext(WorkoutContext);
+
+  if (!context) {
+    throw new Error(
+      "WorkoutPlanCard must be used inside WorkoutProvider"
+    );
+  }
+
+  const {
+    completedWorkouts,
+    setCompletedWorkouts,
+  } = context;
+
+  const isCompleted = completedWorkouts.includes(workout.id);
+
+  // Mark workout as done
+  const handleMarkAsDone = () => {
+    if (isCompleted) return;
+
+    setCompletedWorkouts((prev) => [
+      ...prev,
+      workout.id,
+    ]);
+
+    toast.success("Workout marked as done!");
+  };
+
   return (
     <div className="flex h-[122px] w-full max-w-[1186px] items-center gap-5 rounded-2xl bg-[#222630] p-4">
 
-      {/* Image */}
+      {/* Workout Image */}
       <div className="relative h-[90px] w-[100px] shrink-0 overflow-hidden rounded-xl">
         <Image
           src={workout.image}
@@ -37,8 +68,9 @@ const WorkoutPlanCard = ({
         />
       </div>
 
-      {/* Information */}
+      {/* Workout Information */}
       <div className="min-w-0 flex-1">
+
         <h3 className="truncate text-lg font-bold text-white">
           {workout.name}
         </h3>
@@ -49,16 +81,19 @@ const WorkoutPlanCard = ({
 
         <div className="mt-3 flex items-center gap-5 text-sm text-gray-300">
 
+          {/* Duration */}
           <span className="flex items-center gap-1.5">
             <FaClock className="text-gray-400" />
             {workout.duration}m
           </span>
 
+          {/* Calories */}
           <span className="flex items-center gap-1.5">
             <FaFire className="text-gray-400" />
             {workout.caloriesBurned}
           </span>
 
+          {/* Rating */}
           <span className="flex items-center gap-1.5">
             <FaStar className="text-[#C2F800]" />
             {workout.rating}
@@ -67,10 +102,10 @@ const WorkoutPlanCard = ({
         </div>
       </div>
 
-      {/* Actions */}
+      {/* Buttons */}
       <div className="flex shrink-0 items-center gap-2">
 
-        {/* View Details - Always */}
+        {/* View Details */}
         <button
           onClick={() =>
             router.push(`/Workouts/${workout.id}`)
@@ -80,16 +115,24 @@ const WorkoutPlanCard = ({
           View Details
         </button>
 
-        {/* Mark as Done - Only Today's Plan */}
+        {/* Mark as Done */}
         {showCompleteButton && (
           <button
-            className="rounded-lg border border-gray-600 px-4 py-2 text-sm font-semibold text-white transition hover:border-[#C2F800]"
+            onClick={handleMarkAsDone}
+            disabled={isCompleted}
+            className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition ${
+              isCompleted
+                ? "cursor-not-allowed border-[#C2F800] bg-[#C2F800] text-black"
+                : "border-gray-600 bg-transparent text-white hover:border-[#C2F800]"
+            }`}
           >
+            {isCompleted && <FaCheck />}
+
             Mark as Done
           </button>
         )}
 
-        {/* Remove - Always */}
+        {/* Remove */}
         <button
           onClick={() => onRemove(workout.id)}
           className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-red-500 hover:text-white"

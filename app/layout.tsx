@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "./Components/shared/Navbar";
 import WorkoutProvider from "./Components/Context/WorkoutContext";
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           {children}
           <Footer />
+          <Toaster position="top-right" />
         </WorkoutProvider>
         </body>
     </html>

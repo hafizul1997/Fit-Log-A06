@@ -126,39 +126,31 @@ const MyPlanPage = () => {
         {/* Workout List */}
         <div className="w-full space-y-4">
 
-          {sortedWorkouts.length > 0 ? (
+         {sortedWorkouts.length > 0 ? (
+  sortedWorkouts.map((workout) => (
+    <WorkoutPlanCard
+      key={workout.id}
+      workout={workout}
+      onRemove={handleRemove}
+      showCompleteButton={activeTab === "plan"}
+    />
+  ))
+) : (
+  <div className="flex h-[300px] w-full max-w-[1184px] items-center justify-center rounded-2xl bg-[#222630] px-6 text-center">
+    <div>
+      <p className="text-base text-gray-400">
+        No workout selected yet.
+      </p>
 
-            sortedWorkouts.map((workout) => (
-              <WorkoutPlanCard
-                key={workout.id}
-                workout={workout}
-                onRemove={handleRemove}
-              />
-            ))
-
-          ) : (
-
-            /* Empty State */
-            <div className="flex h-[300px] w-full max-w-[1184px] items-center justify-center rounded-2xl bg-[#222630] px-6 text-center">
-
-              <div>
-                <p className="text-base text-gray-400">
-                  No workout selected yet.
-                </p>
-
-                <button
-                  onClick={() =>
-                    router.push("/Workouts")
-                  }
-                  className="mt-5 rounded-lg bg-[#C2F800] px-6 py-2.5 text-sm font-bold text-black transition hover:bg-[#d4ff33]"
-                >
-                  Go to Workout
-                </button>
-              </div>
-
-            </div>
-          )}
-
+      <button
+        onClick={() => router.push("/Workouts")}
+        className="mt-5 rounded-lg bg-[#C2F800] px-6 py-2.5 text-sm font-bold text-black transition hover:bg-[#d4ff33]"
+      >
+        Go to Workout
+      </button>
+    </div>
+  </div>
+)}
         </div>
 
       </div>

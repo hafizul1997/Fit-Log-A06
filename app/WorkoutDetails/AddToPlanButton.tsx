@@ -2,14 +2,19 @@
 
 import { useContext } from "react";
 import { FaCheck, FaPlus } from "react-icons/fa";
-import { IWorkout } from "../Type.ts/Type";
+import toast from "react-hot-toast";
+
+import { IWorkout } from "@/app/Type.ts/Type";
 import { WorkoutContext } from "@/app/Components/Context/WorkoutContext";
+
+interface AddToPlanButtonProps {
+  workout: IWorkout;
+}
 
 const AddToPlanButton = ({
   workout,
-}: {
-  workout: IWorkout;
-}) => {
+}: AddToPlanButtonProps) => {
+
   const context = useContext(WorkoutContext);
 
   if (!context) {
@@ -18,26 +23,38 @@ const AddToPlanButton = ({
     );
   }
 
-  const { myPlan, setMyPlan } = context;
+  const {
+    myPlan,
+    setMyPlan,
+  } = context;
 
   const alreadyAdded = myPlan.some(
     (item) => item.id === workout.id
   );
 
   const handleAddToPlan = () => {
-    if (alreadyAdded) return;
 
-    setMyPlan((prev) => [...prev, workout]);
+    if (alreadyAdded) {
+      toast.error("Workout is already in your plan.");
+      return;
+    }
+
+    setMyPlan((prev) => [
+      ...prev,
+      workout,
+    ]);
+
+    toast.success("Added to today's plan!");
   };
 
   return (
     <button
+      type="button"
       onClick={handleAddToPlan}
-      disabled={alreadyAdded}
-      className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-bold transition ${
+      className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-6 py-3.5 font-bold transition ${
         alreadyAdded
-          ? "cursor-not-allowed bg-gray-600 text-gray-300"
-          : "bg-[#C2F800] text-black hover:bg-[#d4ff33]"
+          ? "cursor-not-allowed border-gray-600 bg-gray-600 text-gray-300"
+          : "border-[#C2F800] bg-[#C2F800] text-black hover:bg-[#d4ff33]"
       }`}
     >
       {alreadyAdded ? (
