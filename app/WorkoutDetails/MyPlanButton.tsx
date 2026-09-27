@@ -21,11 +21,11 @@ const MyPlanButton = () => {
   return (
     <button
       onClick={() => router.push("/my-plan")}
-      className="btn btn-neutral gap-2"
+      className="btn btn-xs btn-neutral sm:btn-sm md:btn-md lg:btn-lg gap-2 "
     >
       Plan
 
-      <div className="badge badge-lg rounded-full bg-[#CCFF00] text-black">
+      <div className=" rounded-full bg-[#CCFF00] text-black badge badge-xs sm:badge-sm md:badge-md lg:badge-lg">
         {myPlan.length}
       </div>
     </button>

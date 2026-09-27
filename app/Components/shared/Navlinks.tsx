@@ -29,8 +29,27 @@ const Navlinks = ({className = ''}:NavLinksProps ) => {
             links.map((link)=>{
                     const isActive=pathName === link.href;
                     return(
-                        <li key={link.href} className='ml-4'>
-                 <Link href={link.href} className={`${className}  rounded-full flex gap-4  ${isActive ? "!bg-[#1A2312] !text-[#C2F800]" : "!text-white hover:!bg-[#1A2312] hover:!text-[#C2F800]" }`}>
+                        <li key={link.href} className='ml-1 sm:ml-2 lg:ml-4'>
+                 <Link href={link.href} className={`${className}
+    flex items-center gap-1
+    rounded-full
+    bg-transparent
+    px-1.5 py-1
+    text-[10px]
+
+    sm:gap-2
+    sm:px-3 sm:py-2
+    sm:text-sm
+
+    lg:gap-4
+    lg:px-4 lg:py-2.5
+    lg:text-base
+
+    ${
+      isActive
+        ? "!bg-[#1A2312] !text-[#C2F800]"
+        : "!bg-transparent !text-white hover:!bg-[#1A2312] hover:!text-[#C2F800]"
+    }`}>
                         {link.name}
                 </Link>
                         </li>

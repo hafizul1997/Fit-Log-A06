@@ -53,9 +53,9 @@ const Navbar = () => {
     <Navlinks className="w-full  my-1 py-2" />
   </ul>
 </div>
-    <div className='flex gap-5 ml-6'>
-      <Image src={Logo} alt='Logo' width={28} height={28} />
-      <h1 className='text-white'>FITLOG</h1>
+    <div className='flex gap-5 ml-6 items-center'>
+      <Image src={Logo} alt='Logo' width={28} height={28} className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+      <h1 className='text-white font-bold text-xs sm:text-sm md:text-md lg:text-xl'>FITLOG</h1>
     </div>
     
   </div>
