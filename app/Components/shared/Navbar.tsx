@@ -10,7 +10,8 @@ const Navbar = () => {
     return (
       
       <div className='w-full'>  
-        <div className="navbar  bg-[#000000] shadow-sm max-w-\[1280px\] w-full mx-auto">
+      <div className='max-w-\[1280px\]'>   
+        <div className="navbar  bg-[#000000] shadow-sm  w-full ">
   <div className="navbar-start">
     <div className="dropdown">
   <div
@@ -54,7 +55,7 @@ const Navbar = () => {
   </ul>
 </div>
     <div className='flex gap-5 ml-6 items-center'>
-      <Image src={Logo} alt='Logo' width={28} height={28} className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
+      <Image src={Logo} alt='Logo' width={28} height={28} className="h-6 w-6 hidden sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
       <h1 className='text-white font-bold text-xs sm:text-sm md:text-md lg:text-xl'>FITLOG</h1>
     </div>
     
@@ -65,12 +66,13 @@ const Navbar = () => {
      <Navlinks/>
     </ul>
   </div>
-  <div className="navbar-end flex gap-2 mr-6">
+  <div className="navbar-end flex gap-1 sm:gap-2 mr-4 lg:gap-3 mr-6">
     <MyPlanButton />
     <SavedNavButton />
   </div>
 </div>
  </div>
+  </div>
     );
 };
 
