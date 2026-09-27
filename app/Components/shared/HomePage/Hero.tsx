@@ -12,7 +12,7 @@ const HeroPage = () => {
                 <div>  
                 <h1 className=' w-fit text-white  font-bold text-center text-xl sm:text-2xl  md:text-3xl  lg:text-5xl lg:text-left'>TRAIN WITH INTENT. LOG <br/> EVERY SET.</h1>
                 </div>
-                <p className='text-[#9CA3AF] ita text-[8px] sm:text-[10px] md:text-[12px] lg:text-[15px]'>FitLog is a dark, no-nonsense gym companion: pick a lift, lock it <br/> into today's plan, and watch the week's work add up.</p>
+                <p className='text-[#9CA3AF] italic text-justify text-[8px] sm:text-[10px] md:text-[12px] lg:text-[15px]'>FitLog is a dark, no-nonsense gym companion: pick a lift, lock it <br className='hidden sm:block' /> into today's plan, and watch the week's work add up.</p>
                 <a href="#library" className="inline-flex cursor-pointer items-center justify-center
                 gap-1.5  bg-[#C2F800]  px-3  py-2  text-[10px] font-bold transition hover:bg-[#d4ff33] text-black sm:gap-2 sm:px-4 sm:py-2.5 sm:text-xs md:px-5 md:py-3 md:text-base  lg:px-6 lg:py-3.5 lg:text-xl">BROWSE WORKOUTS<FaArrowDown className="shrink-0" /></a>
 
