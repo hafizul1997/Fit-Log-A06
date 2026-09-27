@@ -1,8 +1,10 @@
+
 "use client";
 
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+
 import { WorkoutContext } from "@/app/Components/Context/WorkoutContext";
 import WorkoutSummary from "@/app/Components/MyPlan/WorkpoutSummary";
 import PlanTabs from "@/app/Components/MyPlan/PlanTab";
@@ -15,9 +17,7 @@ const MyPlanPage = () => {
   const context = useContext(WorkoutContext);
 
   if (!context) {
-    throw new Error(
-      "MyPlanPage must be used inside WorkoutProvider"
-    );
+    throw new Error("MyPlanPage must be used inside WorkoutProvider");
   }
 
   const {
@@ -27,52 +27,46 @@ const MyPlanPage = () => {
     setSavedWorkouts,
   } = context;
 
-  const [activeTab, setActiveTab] = useState<
-    "plan" | "saved"
-  >("plan");
+  const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
 
   const [sortBy, setSortBy] = useState("latest");
 
   // Which list will show?
   const selectedWorkouts =
-    activeTab === "plan"
-      ? myPlan
-      : savedWorkouts;
+    activeTab === "plan" ? myPlan : savedWorkouts;
 
   // Sorting
-  const sortedWorkouts = [...selectedWorkouts].sort(
-    (a, b) => {
-      switch (sortBy) {
-        case "name-asc":
-          return a.name.localeCompare(b.name);
+  const sortedWorkouts = [...selectedWorkouts].sort((a, b) => {
+    switch (sortBy) {
+      case "name-asc":
+        return a.name.localeCompare(b.name);
 
-        case "name-desc":
-          return b.name.localeCompare(a.name);
+      case "name-desc":
+        return b.name.localeCompare(a.name);
 
-        case "duration-asc":
-          return a.duration - b.duration;
+      case "duration-asc":
+        return a.duration - b.duration;
 
-        case "duration-desc":
-          return b.duration - a.duration;
+      case "duration-desc":
+        return b.duration - a.duration;
 
-        case "calories-asc":
-          return a.caloriesBurned - b.caloriesBurned;
+      case "calories-asc":
+        return a.caloriesBurned - b.caloriesBurned;
 
-        case "calories-desc":
-          return b.caloriesBurned - a.caloriesBurned;
+      case "calories-desc":
+        return b.caloriesBurned - a.caloriesBurned;
 
-        case "rating-asc":
-          return a.rating - b.rating;
+      case "rating-asc":
+        return a.rating - b.rating;
 
-        case "rating-desc":
-          return b.rating - a.rating;
+      case "rating-desc":
+        return b.rating - a.rating;
 
-        case "latest":
-        default:
-          return 0;
-      }
+      case "latest":
+      default:
+        return 0;
     }
-  );
+  });
 
   // Remove from current tab
   const handleRemove = (id: number) => {
@@ -80,83 +74,129 @@ const MyPlanPage = () => {
       setMyPlan((prev) =>
         prev.filter((workout) => workout.id !== id)
       );
+
       toast.success("Workout removed from your plan!");
     } else {
       setSavedWorkouts((prev) =>
         prev.filter((workout) => workout.id !== id)
       );
-       toast.success("Workout removed from saved workouts!");
+
+      toast.success("Workout removed from saved workouts!");
     }
   };
 
   return (
-    <main className="min-h-screen bg-black px-6 py-10 text-white">
-      <div className="mx-auto w-full max-w-[1186px]">
+    <main className="min-h-screen w-full bg-black px-2 py-6 text-white sm:px-4 sm:py-8 lg:px-0 lg:py-10">
+      
+      {/* Full width 1280px container */}
+      <div className="mx-auto w-full max-w-\[1280px]">
 
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold">
-            My Plan
-          </h1>
+        {/* 1280px - 48px = 1232px content */}
+        <div className="mx-2 sm:mx-4 lg:mx-6">
 
-          <p className="mt-2 text-gray-400">
-           Cap of five lifts for today. Finish them, then load more.
-          </p>
-        </div>
+  {/* Header */}
+  <div className="mb-5 sm:mb-7 lg:mb-8">
+    
+    <h1
+      className="
+        text-xl
+        font-bold
+        leading-tight
+        sm:text-2xl
+        md:text-3xl
+        lg:text-4xl
+      "
+    >
+      My Plan
+    </h1>
 
-        {/* Summary */}
-        <WorkoutSummary
-          workouts={selectedWorkouts}
-        />
+    <p
+      className="
+        mt-1.5
+        max-w-[320px]
+        text-[10px]
+        leading-relaxed
+        text-gray-400
+        sm:mt-2
+        sm:max-w-none
+        sm:text-xs
+        md:text-sm
+        lg:text-base
+      "
+    >
+      Cap of five lifts for today. Finish them, then load more.
+    </p>
 
-        {/* Tabs + Sort */}
-        <div className="mb-6 flex w-full items-center justify-between">
-
-          <PlanTabs
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-          />
-
-          <SortDropdown
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-          />
-
-        </div>
-
-        {/* Workout List */}
-        <div className="w-full space-y-4">
-
-         {sortedWorkouts.length > 0 ? (
-  sortedWorkouts.map((workout) => (
-    <WorkoutPlanCard
-      key={workout.id}
-      workout={workout}
-      onRemove={handleRemove}
-      showCompleteButton={activeTab === "plan"}
-    />
-  ))
-) : (
-  <div className="flex h-[300px] w-full max-w-[1184px] items-center justify-center rounded-2xl bg-[#222630] px-6 text-center">
-    <div>
-      <p className="text-base text-gray-400">
-        No workout selected yet.
-      </p>
-
-      <button
-        onClick={() => router.push("/Workouts")}
-        className="mt-5 rounded-lg bg-[#C2F800] px-6 py-2.5 text-sm font-bold text-black transition hover:bg-[#d4ff33]"
-      >
-        Go to Workout
-      </button>
-    </div>
   </div>
-)}
-        </div>
 
+          {/* Summary */}
+          <WorkoutSummary workouts={selectedWorkouts} />
+
+          {/* Tabs + Sort */}
+         <div
+  className="
+    mb-5
+    flex
+    w-full
+    flex-row
+    items-center
+    justify-between
+    gap-1
+
+    sm:mb-6
+    sm:gap-3
+  "
+>
+  <PlanTabs
+    activeTab={activeTab}
+    setActiveTab={setActiveTab}
+  />
+
+  <SortDropdown
+    sortBy={sortBy}
+    setSortBy={setSortBy}
+  />
+</div>
+
+          {/* Workout List */}
+          <div className="w-full space-y-3 sm:space-y-4">
+
+            {sortedWorkouts.length > 0 ? (
+              sortedWorkouts.map((workout) => (
+                <WorkoutPlanCard
+                  key={workout.id}
+                  workout={workout}
+                  onRemove={handleRemove}
+                  showCompleteButton={activeTab === "plan"}
+                />
+              ))
+            ) : (
+              <div className="flex min-h-[260px] w-full items-center justify-center rounded-xl bg-[#222630] px-4 text-center sm:min-h-[300px] sm:rounded-2xl sm:px-6">
+                
+                <div>
+                  <p className="text-sm text-gray-400 sm:text-base">
+                    No workout selected yet.
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => router.push("/Workouts")}
+                    className="mt-4 rounded-lg bg-[#C2F800] px-4 py-2 text-xs font-bold text-black transition hover:bg-[#d4ff33] sm:mt-5 sm:px-6 sm:py-2.5 sm:text-sm"
+                  >
+                    Go to Workout
+                  </button>
+                </div>
+
+              </div>
+            )}
+
+          </div>
+
+        </div>
       </div>
     </main>
   );
 };
 
 export default MyPlanPage;
+
