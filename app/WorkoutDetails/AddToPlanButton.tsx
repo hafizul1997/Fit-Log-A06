@@ -51,7 +51,7 @@ const AddToPlanButton = ({
     <button
       type="button"
       onClick={handleAddToPlan}
-      className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-6 py-3.5 font-bold transition ${
+      className={` flex min-w-0 flex-1 items-center justify-center gap-1 rounded-lg  border px-2 py-1.5 text-[9px] font-bold sm:gap-1.5 sm:rounded-xl sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-5 md:py-3 md:text-sm lg:px-6 lg:py-3.5 lg:text-base ${
         alreadyAdded
           ? "cursor-not-allowed border-gray-600 bg-gray-600 text-gray-300"
           : "border-[#C2F800] bg-[#C2F800] text-black hover:bg-[#d4ff33]"

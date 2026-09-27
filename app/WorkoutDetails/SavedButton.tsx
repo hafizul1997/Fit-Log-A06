@@ -51,9 +51,7 @@ const SavedButton = ({
     <button
       type="button"
       onClick={handleSave}
-      className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-6 py-3.5 font-bold transition ${
-        alreadySaved
-          ? "cursor-not-allowed border-gray-600 bg-gray-600 text-gray-300"
+      className={` flex min-w-0 flex-1 items-center justify-center gap-1 rounded-lg  border px-2 py-1.5 text-[9px] font-bold sm:gap-1.5 sm:rounded-xl sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-5 md:py-3 md:text-sm lg:px-6 lg:py-3.5 lg:text-base ${ alreadySaved  ? "cursor-not-allowed border-gray-600 bg-gray-600 text-gray-300"
           : "border-gray-600 bg-transparent text-white hover:border-[#C2F800]"
       }`}
     >
